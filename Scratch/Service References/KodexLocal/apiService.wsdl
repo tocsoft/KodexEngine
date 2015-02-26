@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://server.soap.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="apiService" targetNamespace="http://server.soap.com/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema targetNamespace="http://server.soap.com/" version="1.0" />
+  </types>
+  <message name="launch">
+    <part name="app" element="xsd:string" />
+    <part name="user" element="xsd:string" />
+    <part name="caseref" element="xsd:string" />
+    <part name="args" element="xsd:string" />
+  </message>
+  <message name="launchResponse">
+    <part name="return" element="xsd:string" />
+  </message>
+  <message name="isbusy">
+    <part name="app" element="xsd:string" />
+    <part name="user" element="xsd:string" />
+  </message>
+  <message name="isbusyResponse">
+    <part name="return" element="xsd:string" />
+  </message>
+  <message name="result">
+    <part name="app" element="xsd:string" />
+    <part name="user" element="xsd:string" />
+  </message>
+  <message name="resultResponse">
+    <part name="return" element="xsd:string" />
+  </message>
+  <portType name="api">
+    <operation name="launch">
+      <input wsam:Action="launch" message="tns:launch" />
+      <output wsam:Action="http://server.soap.com/api/launchResponse" message="tns:launchResponse" />
+    </operation>
+    <operation name="isbusy">
+      <input wsam:Action="isbusy" message="tns:isbusy" />
+      <output wsam:Action="http://server.soap.com/api/isbusyResponse" message="tns:isbusyResponse" />
+    </operation>
+    <operation name="result">
+      <input wsam:Action="result" message="tns:result" />
+      <output wsam:Action="http://server.soap.com/api/resultResponse" message="tns:resultResponse" />
+    </operation>
+  </portType>
+  <binding name="apiPortBinding" type="tns:api">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <operation name="launch">
+      <soap:operation soapAction="launch" />
+      <input name="launch">
+        <soap:body use="literal" />
+      </input>
+      <output name="launchResponse">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="isbusy">
+      <soap:operation soapAction="isbusy" />
+      <input name="isbusy">
+        <soap:body use="literal" />
+      </input>
+      <output name="isbusyResponse">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="result">
+      <soap:operation soapAction="result" />
+      <input name="result">
+        <soap:body use="literal" />
+      </input>
+      <output name="resultResponse">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="apiService">
+    <port name="apiPort" binding="tns:apiPortBinding">
+      <soap:address location="http://localhost:15535/api" />
+    </port>
+  </service>
+</definitions>
