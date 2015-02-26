@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebService", "WebService", 
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "KodexEngine.Client", "KodexEngine.Client\KodexEngine.Client.njsproj", "{00090CE3-9A56-4024-932B-72A70C2EB0DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScratchSite", "ScratchSite\ScratchSite.csproj", "{DC18BCFD-A415-44FB-961F-B8E0160F621B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{00090CE3-9A56-4024-932B-72A70C2EB0DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00090CE3-9A56-4024-932B-72A70C2EB0DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00090CE3-9A56-4024-932B-72A70C2EB0DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC18BCFD-A415-44FB-961F-B8E0160F621B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC18BCFD-A415-44FB-961F-B8E0160F621B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC18BCFD-A415-44FB-961F-B8E0160F621B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC18BCFD-A415-44FB-961F-B8E0160F621B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,7 +2,7 @@
 var net = require('net');
 var Q = require("q")
 
-module.exports = function (name, args, callback) {
+module.exports = function (name, args, runOnceCallback, callback) {
     
     var deferred = Q.defer();
     
@@ -36,6 +36,7 @@ module.exports = function (name, args, callback) {
     if (callback) {
         p = p.then(function (v) {
             if (v) {
+                runOnceCallback(args);
                 callback(args);
             }
         });

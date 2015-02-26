@@ -5,12 +5,12 @@
   "main": "app.js",
   "author": {
     "name": "Scott",
-    "email": ""
+    "email": "tocsoft@gmail.com"
   },
   "dependencies": {
     "appjs": "0.0.20",
     "appjs-win32": "0.0.19",
     "q": "^1.2.0",
-    "soap-server": "^0.1.0"
+    "soap": "^0.8.0"
   }
 }
