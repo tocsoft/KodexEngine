@@ -1,0 +1,9 @@
+﻿{
+    "name": "DocumentSearcher",
+    "description": "Searchs documents for specific pieces of text",
+    "main": "DocumentSearcher.dll",
+    "content": "Content",
+    "configuration": {
+
+    }
+}

@@ -1,0 +1,8 @@
+﻿{
+    "medical_report": {
+        "searchTerms": {
+            "term1": "description"
+        },
+        "document" : "fieldNameToGetDocumentFrom"
+    }
+}

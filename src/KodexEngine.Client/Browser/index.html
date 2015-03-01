@@ -1,0 +1,102 @@
+﻿<html>
+<head>
+    <style>
+        body {
+            margin:0;
+            padding:0;
+        }
+        iframe{
+            border:0;
+        }
+    </style>
+</head>
+<body>
+    <iframe style="width:100%; height:100%;"></iframe>
+    <script>
+
+        var gui = require('nw.gui');
+        var win = gui.Window.get();
+        var arguments = gui.App.argv;
+
+        console.log(arguments);
+
+        var server = arguments[1];
+        var local = "http://localhost:" + arguments[0];
+        var localPort = arguments[0];
+        var appName = arguments[2];
+        var sessionId = arguments[3];
+        var appArgs = JSON.parse(arguments[4]);
+        var user = arguments[5];
+        var caseReference = arguments[6];
+
+        var frame = document.getElementsByTagName('iframe')[0];
+
+
+        win.on('document-start', function (frame) {
+            if (frame) {
+                frame.contentWindow.window.cancel = function () {
+                    result('cancel');
+                }
+                frame.contentWindow.window.complete = function (data) {
+                    result('complete', data);
+                }
+                frame.contentWindow.window.arguments = appArgs;
+                frame.contentWindow.window.user = user;
+                frame.contentWindow.window.caseReference = caseReference;
+            }
+        });
+
+        frame.src = server + "/modules/" + appName + "/client";
+
+        function result(action, data) {
+            win.hide(); // Pretend to be closed already
+            console.log("We're closing...");
+
+            var http = require('http');
+
+            //The url we want is `www.nodejitsu.com:1337/`
+            var options = {
+                host: 'localhost',
+                path: '/result',
+                //since we are listening on a custom port, we need to specify it by hand
+                port: localPort,
+                //This is what changes the request to a POST request
+                method: 'POST'
+            };
+
+            callback = function (response) {
+                var str = ''
+                response.on('data', function (chunk) {
+                    str += chunk;
+                });
+
+                response.on('end', function () {
+                    console.log(str);
+
+
+                    win.close(true);
+                });
+            }
+
+            var req = http.request(options, callback);
+            //This is the data we are posting, it needs to be a string or a buffer
+        
+            req.write(JSON.stringify({
+                sessionId: sessionId,
+                response: data,
+                action: action
+            }));
+            req.end();
+
+        }
+
+        win.on('close', function () {
+            result("cancel");
+        });
+
+    </script>
+
+
+
+</body>
+</html>

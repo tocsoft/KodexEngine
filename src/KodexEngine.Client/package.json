@@ -1,0 +1,19 @@
+{
+  "name": "KodexEngine",
+  "version": "0.0.0",
+  "description": "KodexEngine",
+  "main": "index.html",
+  "author": {
+    "name": "Scott",
+    "email": "tocsoft@gmail.com"
+  },
+  "dependencies": {
+    "express": "^4.12.0",
+    "nw": "^0.12.0-rc1",
+    "q": "^1.2.0",
+    "soap": "^0.8.0"
+  },
+  "window": {
+    "show": true
+  }
+}

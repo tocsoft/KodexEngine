@@ -1,0 +1,16 @@
+{
+    "name": "KodexEngineBrowser",
+    "version": "0.0.0",
+    "description": "KodexEngine",
+    "main": "index.html",
+    "author": {
+        "name": "Scott",
+        "email": "tocsoft@gmail.com"
+    },
+    "dependencies": {
+    },
+    "single-instance": false,
+    "window": {
+        "show": true
+    }
+}

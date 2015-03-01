@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scratch", "Scratch\Scratch.csproj", "{3B9A6205-75FC-4DE1-9DB4-C20F01594ADD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebService", "WebService", "{C6A62865-D576-484D-9B22-C05D8CA20AF5}"
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "KodexEngine.Client", "KodexEngine.Client\KodexEngine.Client.njsproj", "{00090CE3-9A56-4024-932B-72A70C2EB0DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScratchSite", "ScratchSite\ScratchSite.csproj", "{DC18BCFD-A415-44FB-961F-B8E0160F621B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{B29B6210-5C07-4E83-8026-644BD3729DA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KodexEngine", "KodexEngine\KodexEngine.csproj", "{8E0364CD-935F-4195-979F-3C4E055A2535}"
+	ProjectSection(ProjectDependencies) = postProject
+		{68FADFC5-33AE-4E7D-A1F0-BF3197467494} = {68FADFC5-33AE-4E7D-A1F0-BF3197467494}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Applications", "{ADDB10D3-B610-4612-999E-5C0D0F8BE355}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentSearcher", "DocumentSearcher\DocumentSearcher.csproj", "{68FADFC5-33AE-4E7D-A1F0-BF3197467494}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KodexEngine.Host", "KodexEngine.Host\KodexEngine.Host.csproj", "{A6E195B4-C859-4AB8-AAA3-DAEF8327F990}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3B9A6205-75FC-4DE1-9DB4-C20F01594ADD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B9A6205-75FC-4DE1-9DB4-C20F01594ADD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B9A6205-75FC-4DE1-9DB4-C20F01594ADD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B9A6205-75FC-4DE1-9DB4-C20F01594ADD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00090CE3-9A56-4024-932B-72A70C2EB0DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00090CE3-9A56-4024-932B-72A70C2EB0DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00090CE3-9A56-4024-932B-72A70C2EB0DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00090CE3-9A56-4024-932B-72A70C2EB0DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC18BCFD-A415-44FB-961F-B8E0160F621B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC18BCFD-A415-44FB-961F-B8E0160F621B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC18BCFD-A415-44FB-961F-B8E0160F621B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC18BCFD-A415-44FB-961F-B8E0160F621B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E0364CD-935F-4195-979F-3C4E055A2535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E0364CD-935F-4195-979F-3C4E055A2535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E0364CD-935F-4195-979F-3C4E055A2535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E0364CD-935F-4195-979F-3C4E055A2535}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68FADFC5-33AE-4E7D-A1F0-BF3197467494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68FADFC5-33AE-4E7D-A1F0-BF3197467494}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68FADFC5-33AE-4E7D-A1F0-BF3197467494}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68FADFC5-33AE-4E7D-A1F0-BF3197467494}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6E195B4-C859-4AB8-AAA3-DAEF8327F990}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6E195B4-C859-4AB8-AAA3-DAEF8327F990}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6E195B4-C859-4AB8-AAA3-DAEF8327F990}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6E195B4-C859-4AB8-AAA3-DAEF8327F990}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8E0364CD-935F-4195-979F-3C4E055A2535} = {C6A62865-D576-484D-9B22-C05D8CA20AF5}
+		{68FADFC5-33AE-4E7D-A1F0-BF3197467494} = {ADDB10D3-B610-4612-999E-5C0D0F8BE355}
+		{A6E195B4-C859-4AB8-AAA3-DAEF8327F990} = {C6A62865-D576-484D-9B22-C05D8CA20AF5}
+	EndGlobalSection
+EndGlobal
