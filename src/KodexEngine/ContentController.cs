@@ -16,25 +16,29 @@ namespace KodexEngine
         [HttpGet]
         public HttpResponseMessage File(string plugin, Plugin.ContentAreas contentArea, string path)
         {
+            path = path ?? "";
+
             var pluginEntry = PluginLoader.Instance[plugin];
 
-            var defaultFiles = new[]{ 
-                "index.html"
-            };
 
-            var paths = new List<string>();
-            if (!string.IsNullOrWhiteSpace(path))
+            var file = pluginEntry.LoadContentFile(path, contentArea);
+
+            if (file == null && path == "")
             {
-                paths.Add(path);
-            }
 
-            paths.AddRange(defaultFiles.Select(p => Path.Combine(path ?? "", p)));
+                var file2 = pluginEntry.LoadContentFile("index.html", contentArea);
 
-            var file = paths.Select(p => pluginEntry.LoadContentFile(p, contentArea)).FirstOrDefault(x => x != null);
+                if (file2 == null)
+                {
+                    return new HttpResponseMessage(HttpStatusCode.NotFound);
+                }
+                else
+                {
+                    var r = new HttpResponseMessage(HttpStatusCode.Moved);
 
-            if (file == null)
-            {
-                return new HttpResponseMessage(HttpStatusCode.NotFound);
+                    r.Headers.Location = new Uri(this.Request.RequestUri, "./index.html");
+                    return r;
+                }
             }
             else
             {

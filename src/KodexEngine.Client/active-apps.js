@@ -22,34 +22,38 @@ Application.prototype.cancel = function () {
     this.cancelled = true;
 }
 
-module.exports = {
-    getApp : function (appNameOrId, user) {
+var getApp = function (appNameOrId, user) {
+    
+    for (var i = 0; i < loadedApps.length; i++) {
+        var app = loadedApps[i];
         
-        for (var i = 0; i < loadedApps.length; i++) {
-            var app = loadedApps[i];
-            
-            if (user) {
-                if (app.user == user && app.app == appNameOrId) {
-                    return app;
-                }
-            } else {
-                if (app.id == appNameOrId) {
-                    return app;
-                }
+        if (user) {
+            if (app.user == user && app.app == appNameOrId) {
+                return app;
+            }
+        } else {
+            if (app.id == appNameOrId) {
+                return app;
             }
         }
-        return null;
-    },
-    getAppOrCreate : function (app, user, caseref, args) {
-        
-        var current = getApp(app, user);
-        if (current) {
-            return cuurent;
-        }
-        
-        var newApp = new Application(app, user, caseref, args)
-        
-        loadedApps.push(newApp);
-        return newApp;
     }
+    return null;
+};
+
+var getAppOrCreate = function (app, user, caseref, args) {
+    
+    var current = getApp(app, user);
+    if (current) {
+        return cuurent;
+    }
+    
+    var newApp = new Application(app, user, caseref, args)
+    
+    loadedApps.push(newApp);
+    return newApp;
+};
+
+module.exports = {
+    getApp : getApp,
+    getAppOrCreate : getAppOrCreate
 };

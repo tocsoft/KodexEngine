@@ -2,11 +2,12 @@
 <head>
     <style>
         body {
-            margin:0;
-            padding:0;
+            margin: 0;
+            padding: 0;
         }
-        iframe{
-            border:0;
+
+        iframe {
+            border: 0;
         }
     </style>
 </head>
@@ -43,6 +44,7 @@
                 frame.contentWindow.window.arguments = appArgs;
                 frame.contentWindow.window.user = user;
                 frame.contentWindow.window.caseReference = caseReference;
+                frame.contentWindow.window.apiUrl = server + "/modules/" + appName + "/api";
             }
         });
 
@@ -80,7 +82,7 @@
 
             var req = http.request(options, callback);
             //This is the data we are posting, it needs to be a string or a buffer
-        
+
             req.write(JSON.stringify({
                 sessionId: sessionId,
                 response: data,

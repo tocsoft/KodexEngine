@@ -9,5 +9,32 @@
     <h1>Client</h1>
 
     <button onclick="window.cancel()">Cancel</button>
+
+    <script src="jquery.js"></script>
+    <script>
+        var taskId = null;
+        var check = null;
+        check = function () {
+
+            $.get(window.apiUrl + "/IsBusy?taskId=" + taskId)
+        .complete(function (d) {
+
+            if (d) {
+                check();
+            } else {
+                alert('processed');
+            }
+        })
+
+            setTimeout(check, 2000);
+        }
+        $.get(window.apiUrl + "/StartProcessing?documentType=" + window.args.documentType + "&caseReference=" + window.caseReference)
+        .complete(function (d) {
+            taskId = d;
+            check();
+        })
+
+
+    </script>
 </body>
 </html>

@@ -2,7 +2,9 @@
 using KodexEngine.Host;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Caching;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -13,8 +15,7 @@ namespace DocumentSearcher.Controllers
     {
         DocumentService documents = new DocumentService();
 
-        Dictionary<string, Task<string>> _tasks = new Dictionary<string, Task<string>>();
-
+        MemoryCache _cache = new MemoryCache("processingJobs");
         [HttpGet, PluginRoute("hello")]
         public string Hello()
         {
@@ -22,26 +23,41 @@ namespace DocumentSearcher.Controllers
         }
 
         [HttpGet, PluginRoute("StartProcessing")]
-        public string StartProcessing(string caseRefernece, string configName)
+        public string StartProcessing(string caseRefernece, string documentType)
         {
             var taskId = Guid.NewGuid().ToString();
 
-            Task<string> t = Task.Run(() =>
+            Task<Stream> t = Task.Run(async () =>
             {
-                var config = this.Config[configName];
+                var config = this.Config[documentType];
 
                 var pdfPath = documents.GetDocument(caseRefernece, config.Document);
 
-
-
-                return "";
-
+                return await pdf2htmlEX.ConvertToHtml(pdfPath);
             });
 
-            _tasks.Add(taskId, t);
+            _cache.Add(new CacheItem(taskId, t), new CacheItemPolicy()
+            {
+                SlidingExpiration = new TimeSpan(0, 1, 0)
+            });
 
 
             return taskId;
         }
+
+
+        public bool IsBusy(string taskId)
+        {
+            var t = _cache.Get(taskId) as Task<Stream>;
+
+            if (t == null || t.IsCompleted)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+
     }
 }
