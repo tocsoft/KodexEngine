@@ -39,14 +39,26 @@ namespace DocumentSearcher
         {
             return Task.Run<Stream>(() =>
             {
-                var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + ".pdf");
+                var folder = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
 
-                var htmlPath = tempPath + ".html";
+                Directory.CreateDirectory(folder);
+
+                var tempPath = Path.Combine(folder, "document.pdf");
+                var htmlPath = Path.Combine(folder, "document.html");
 
                 File.Copy(path, tempPath, true);
 
-                var proc = Process.Start(ExePath, BuildCommandLineArgs(tempPath, htmlPath));
+                var proc = Process.Start(new ProcessStartInfo(ExePath, BuildCommandLineArgs("document.pdf", "document.html", "--fit-width", "1024"))
+                {
+                    RedirectStandardError = true,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = true,
+                    UseShellExecute = false,
+                    WorkingDirectory = folder
+                });
 
+                var error = proc.StandardError.ReadToEnd();
+                var output = proc.StandardOutput.ReadToEnd();
                 proc.WaitForExit();
 
                 return new ProxyStream(File.OpenRead(htmlPath), () =>

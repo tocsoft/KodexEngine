@@ -61,6 +61,8 @@ namespace Scratch
                 var response = client.results(application, name);
 
                 Console.WriteLine(response);
+
+                Console.ReadLine();
             }
         }
     }

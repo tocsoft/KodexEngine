@@ -41,14 +41,14 @@
                 frame.contentWindow.window.complete = function (data) {
                     result('complete', data);
                 }
-                frame.contentWindow.window.arguments = appArgs;
+                frame.contentWindow.window.args = appArgs;
                 frame.contentWindow.window.user = user;
                 frame.contentWindow.window.caseReference = caseReference;
                 frame.contentWindow.window.apiUrl = server + "/modules/" + appName + "/api";
             }
         });
 
-        frame.src = server + "/modules/" + appName + "/client";
+        frame.src = server + "/modules/" + appName + "/client/";
 
         function result(action, data) {
             win.hide(); // Pretend to be closed already

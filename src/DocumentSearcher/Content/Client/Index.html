@@ -9,28 +9,31 @@
     <h1>Client</h1>
 
     <button onclick="window.cancel()">Cancel</button>
+    <button onclick='window.complete({ "fieldname": "newfieldvalue" })'>OK</button>
+
+    <div id="document"></div>
 
     <script src="jquery.js"></script>
     <script>
         var taskId = null;
-        var check = null;
-        check = function () {
 
-            $.get(window.apiUrl + "/IsBusy?taskId=" + taskId)
+
+        $.get(window.apiUrl + "/Document/StartProcessing?documentType=" + window.args.documentType + "&caseReference=" + window.caseReference)
         .complete(function (d) {
+            taskId = d.responseJSON;
 
-            if (d) {
-                check();
-            } else {
-                alert('processed');
-            }
-        })
 
-            setTimeout(check, 2000);
-        }
-        $.get(window.apiUrl + "/StartProcessing?documentType=" + window.args.documentType + "&caseReference=" + window.caseReference)
-        .complete(function (d) {
-            taskId = d;
+            var check = null;
+
+            check = function () {
+                $.get(window.apiUrl + "/Document/IsProcessing?taskId=" + taskId, function (result) {
+                    if (!result) {
+                        $('#document').load(window.apiUrl + "/Document/Load?taskId=" + taskId);
+                    } else {
+                        setTimeout(check, 2000);
+                    }
+                })
+            };
             check();
         })
 

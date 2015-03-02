@@ -14,11 +14,12 @@ function Application(app, user, caseref, args) {
 }
 
 Application.prototype.complete = function (result) {
-    this.busy = false;
     this.result = result;
+    this.busy = false;
 }
 
 Application.prototype.cancel = function () {
+    this.busy = false;
     this.cancelled = true;
 }
 

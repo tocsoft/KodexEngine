@@ -26,19 +26,12 @@ namespace KodexEngine
             if (file == null && path == "")
             {
 
-                var file2 = pluginEntry.LoadContentFile("index.html", contentArea);
+                file = pluginEntry.LoadContentFile("index.html", contentArea);
+            }
 
-                if (file2 == null)
-                {
-                    return new HttpResponseMessage(HttpStatusCode.NotFound);
-                }
-                else
-                {
-                    var r = new HttpResponseMessage(HttpStatusCode.Moved);
-
-                    r.Headers.Location = new Uri(this.Request.RequestUri, "./index.html");
-                    return r;
-                }
+            if (file == null)
+            {
+                return new HttpResponseMessage(HttpStatusCode.NotFound);
             }
             else
             {

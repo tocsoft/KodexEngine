@@ -24,7 +24,7 @@ require('./singleinstance.js')('def1', arguments, function () {
            
             var current = apps.getApp(content.sessionId);
             
-            current[content.action](current.result);
+            current[content.action](content.response);
 
             res.send("OK");
         });
@@ -42,7 +42,7 @@ require('./singleinstance.js')('def1', arguments, function () {
         //each new launch kicks in here
         
         var spawn = require('child_process').spawn;
-        var ps = spawn('.\\node_modules\\nw\\nwjs\\nw.exe', ['Browser', 15535, config.server, app.app, app.id, app.args, app.user]);
+        var ps = spawn('.\\node_modules\\nw\\nwjs\\nw.exe', ['Browser', 15535, config.server, app.app, app.id, app.args, app.user, app.caseReference]);
        
     });
 
